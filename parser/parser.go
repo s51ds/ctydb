@@ -4,12 +4,11 @@ import (
 	"bytes"
 	"fmt"
 	"github.com.s51ds/ctydb/cty"
-	"os"
 	"strconv"
 	"strings"
 )
 
-// this function parse cty dat record, record format is defined at
+// parseCtyDatRecord parse cty dat record, record format is defined at
 // https://www.country-files.com/cty-dat-format/
 func parseCtyDatRecord(ctyDatRecord string) (ctyDatList []cty.Dta, err error) {
 	if len(ctyDatRecord) < 76 {
@@ -176,7 +175,7 @@ func parseCtyDatRecord(ctyDatRecord string) (ctyDatList []cty.Dta, err error) {
 	return ctyDatList, nil
 }
 
-// this function removes comments
+// removeComments removes comments
 func removeComments(ctyDatRecords string) string {
 	//first we have to check if ctyDatRecords has a comments
 	if strings.Contains(ctyDatRecords, "#") {
@@ -202,11 +201,13 @@ func removeComments(ctyDatRecords string) string {
 }
 
 func parseCtyDatRecordsForTest(ctyDatRecords string) (msize int, err error) {
-	m, e := parseCtyDatRecords(ctyDatRecords)
+	m, e := ParseCtyDatRecords(ctyDatRecords)
 	return len(m), e
 }
 
-func parseCtyDatRecords(ctyDatRecords string) (m map[string]cty.Dta, err error) {
+// ParseCtyDatRecords parses ctyDatRecords and returns map, key is Primary or Alias DXCC Prefix.
+// Function panics if ctyDatRecords is wrong formatted.
+func ParseCtyDatRecords(ctyDatRecords string) (m map[string]cty.Dta, err error) {
 	m = make(map[string]cty.Dta)
 	ctyDatRecords = removeComments(ctyDatRecords)
 	records := strings.Split(ctyDatRecords, ";")
@@ -221,7 +222,7 @@ func parseCtyDatRecords(ctyDatRecords string) (m map[string]cty.Dta, err error) 
 				if e != nil {
 					fmt.Println(r)
 					fmt.Println(e)
-					os.Exit(1)
+					panic(e.Error())
 				}
 				ch <- v
 			}(rec)

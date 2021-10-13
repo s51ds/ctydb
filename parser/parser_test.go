@@ -829,7 +829,7 @@ func Test_removeComments(t *testing.T) {
 	}
 }
 
-func Test_parseCtyDatRecordsGo(t *testing.T) {
+func Test_parseCtyDatRecords(t *testing.T) {
 	type args struct {
 		ctyDatRecords string
 	}
@@ -848,9 +848,9 @@ func Test_parseCtyDatRecordsGo(t *testing.T) {
 			wantErr:   false,
 		},
 		{
-			name: "CtyWtModDatRecords",
+			name: "CtyWtModDatFile4test",
 			args: args{
-				ctyDatRecords: ad1c.CtyWtModDatRecords,
+				ctyDatRecords: ad1c.CtyWtModDatFile4test,
 			},
 			wantMsize: 26991,
 			wantErr:   false,

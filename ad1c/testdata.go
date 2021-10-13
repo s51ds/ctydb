@@ -36,3 +36,20 @@ const (
     AA,
     =K5ZD<42.27/71.37>,AD1C(4)[7]<39.52/105.20>~6.0~;`
 )
+
+const TestInput1 = `#
+# RELEASE 2019.06.08.00
+# based on CTY-2909
+#
+# ADIF 246
+Sov Mil Order of Malta:   15:  28:  EU:   41.90:   -12.43:    -1.0:  1A:
+    1A;
+# ADIF 247
+Spratly Islands:          26:  50:  AS:    9.88:  -114.23:    -8.0:  1S:
+    9M0,BM9S,BN9S,BO9S,BP9S,BQ9S,BU9S,BV9S,BW9S,BX9S;
+# ADIF 260`
+
+const TestOutput1 = `Sov Mil Order of Malta:   15:  28:  EU:   41.90:   -12.43:    -1.0:  1A:
+    1A;
+Spratly Islands:          26:  50:  AS:    9.88:  -114.23:    -8.0:  1S:
+    9M0,BM9S,BN9S,BO9S,BP9S,BQ9S,BU9S,BV9S,BW9S,BX9S;`
