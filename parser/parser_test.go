@@ -28,7 +28,7 @@ func Test_parseCtyDatRecordErrorCases(t *testing.T) {
 		{
 			name: "tooShorRecord",
 			args: args{
-				ctyDatRecord: "SloveniaCtyDat:                 15:  28:  EU: ",
+				ctyDatRecord: "SloveniaCtyDat4test:                 15:  28:  EU: ",
 			},
 			wantCtyDatList: nil,
 			wantErr:        true,
@@ -59,9 +59,9 @@ func Test_parseCtyDatRecordSlovenia(t *testing.T) {
 		wantErr        bool
 	}{
 		{
-			name: "SloveniaCtyDat",
+			name: "SloveniaCtyDat4test",
 			args: args{
-				ctyDatRecord: ad1c.SloveniaCtyDat,
+				ctyDatRecord: ad1c.SloveniaCtyDat4test,
 			},
 			wantDtaRecords: []cty.Dta{
 				{
@@ -171,9 +171,9 @@ func Test_parseCtyDatRecordSweden(t *testing.T) {
 		wantErr        bool
 	}{
 		{
-			name: "SwedenCtyDat",
+			name: "SwedenCtyDat4test",
 			args: args{
-				ctyDatRecord: ad1c.SwedenCtyDat,
+				ctyDatRecord: ad1c.SwedenCtyDat4test,
 			},
 			wantCtyDatList: []cty.Dta{
 				{
@@ -299,9 +299,9 @@ func Test_parseCtyDatRecordAfricanItaly(t *testing.T) {
 		wantErr        bool
 	}{
 		{
-			name: "AfricanItalyCtyDat",
+			name: "AfricanItalyCtyDat4test",
 			args: args{
-				ctyDatRecord: ad1c.AfricanItalyCtyDat,
+				ctyDatRecord: ad1c.AfricanItalyCtyDat4test,
 			},
 			wantCtyDatList: []cty.Dta{
 				{
@@ -385,9 +385,9 @@ func Test_parseCtyDatRecordYemen(t *testing.T) {
 		wantErr        bool
 	}{
 		{
-			name: "YemenCtyDat",
+			name: "YemenCtyDat4test",
 			args: args{
-				ctyDatRecord: ad1c.YemenCtyDat,
+				ctyDatRecord: ad1c.YemenCtyDat4test,
 			},
 			wantCtyDatList: []cty.Dta{
 				{
@@ -460,7 +460,7 @@ func Test_parseCtyDatRecordPeter1Island(t *testing.T) {
 		{
 			name: "Peter 1 Island",
 			args: args{
-				ctyDatRecord: ad1c.Peter1IslandCtyDat,
+				ctyDatRecord: ad1c.Peter1IslandCtyDat4test,
 			},
 			wantCtyDatList: []cty.Dta{
 				{
@@ -518,9 +518,9 @@ func Test_parseCtyDatRecordBouvet(t *testing.T) {
 		wantErr        bool
 	}{
 		{
-			name: "BouvetCtyDat",
+			name: "BouvetCtyDat4test",
 			args: args{
-				ctyDatRecord: ad1c.BouvetCtyDat,
+				ctyDatRecord: ad1c.BouvetCtyDat4test,
 			},
 			wantCtyDatList: []cty.Dta{
 				{
@@ -606,7 +606,7 @@ func Test_parseCtyDatRecordSloveniaCtyWtDat(t *testing.T) {
 		{
 			name: "Slovenia Cty Wt Mod",
 			args: args{
-				ctyDatRecord: ad1c.SloveniaWtModDat,
+				ctyDatRecord: ad1c.SloveniaWtModDat4test,
 			},
 			wantCtyDatList: []cty.Dta{
 				{
@@ -653,7 +653,7 @@ func Test_parseCtyDatRecordSwedenCtyWtDat(t *testing.T) {
 		{
 			name: "Sweden Cty Wt Mod",
 			args: args{
-				ctyDatRecord: ad1c.SwedenWtModDat,
+				ctyDatRecord: ad1c.SwedenWtModDat4test,
 			},
 			wantCtyDatList: []cty.Dta{
 				{
@@ -727,7 +727,7 @@ func Test_parseCtyDatRecordUnitedStatesCtyWtDat(t *testing.T) {
 		{
 			name: "USA Cty Wt Mod",
 			args: args{
-				ctyDatRecord: ad1c.UnitedStatesWtModDat,
+				ctyDatRecord: ad1c.UnitedStatesWtModDat4test,
 			},
 			wantCtyDatList: []cty.Dta{
 				{
@@ -840,9 +840,9 @@ func Test_parseCtyDatRecordsGo(t *testing.T) {
 		wantErr   bool
 	}{
 		{
-			name: "CtyDatRecords",
+			name: "CtyDatFile4test",
 			args: args{
-				ctyDatRecords: ad1c.CtyDatRecords,
+				ctyDatRecords: ad1c.CtyDatFile4test,
 			},
 			wantMsize: 21314,
 			wantErr:   false,
