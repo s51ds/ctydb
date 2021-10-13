@@ -14,7 +14,7 @@ func Test_parseCtyDatRecordErrorCases(t *testing.T) {
 	tests := []struct {
 		name           string
 		args           args
-		wantCtyDatList []cty.Dta
+		wantCtyDatList []cty.Dat
 		wantErr        bool
 	}{
 		{
@@ -55,7 +55,7 @@ func Test_parseCtyDatRecordSlovenia(t *testing.T) {
 	tests := []struct {
 		name           string
 		args           args
-		wantDtaRecords []cty.Dta
+		wantDtaRecords []cty.Dat
 		wantErr        bool
 	}{
 		{
@@ -63,7 +63,7 @@ func Test_parseCtyDatRecordSlovenia(t *testing.T) {
 			args: args{
 				ctyDatRecord: ad1c.SloveniaCtyDat4test,
 			},
-			wantDtaRecords: []cty.Dta{
+			wantDtaRecords: []cty.Dat{
 				{
 					CountryName:   "Slovenia",
 					PrimaryPrefix: "S5",
@@ -167,7 +167,7 @@ func Test_parseCtyDatRecordSweden(t *testing.T) {
 	tests := []struct {
 		name           string
 		args           args
-		wantCtyDatList []cty.Dta
+		wantCtyDatList []cty.Dat
 		wantErr        bool
 	}{
 		{
@@ -175,7 +175,7 @@ func Test_parseCtyDatRecordSweden(t *testing.T) {
 			args: args{
 				ctyDatRecord: ad1c.SwedenCtyDat4test,
 			},
-			wantCtyDatList: []cty.Dta{
+			wantCtyDatList: []cty.Dat{
 				{
 					CountryName:   "Sweden",
 					PrimaryPrefix: "SM",
@@ -295,7 +295,7 @@ func Test_parseCtyDatRecordAfricanItaly(t *testing.T) {
 	tests := []struct {
 		name           string
 		args           args
-		wantCtyDatList []cty.Dta
+		wantCtyDatList []cty.Dat
 		wantErr        bool
 	}{
 		{
@@ -303,7 +303,7 @@ func Test_parseCtyDatRecordAfricanItaly(t *testing.T) {
 			args: args{
 				ctyDatRecord: ad1c.AfricanItalyCtyDat4test,
 			},
-			wantCtyDatList: []cty.Dta{
+			wantCtyDatList: []cty.Dat{
 				{
 					CountryName:   "African Italy",
 					PrimaryPrefix: "IG9",
@@ -381,7 +381,7 @@ func Test_parseCtyDatRecordYemen(t *testing.T) {
 	tests := []struct {
 		name           string
 		args           args
-		wantCtyDatList []cty.Dta
+		wantCtyDatList []cty.Dat
 		wantErr        bool
 	}{
 		{
@@ -389,7 +389,7 @@ func Test_parseCtyDatRecordYemen(t *testing.T) {
 			args: args{
 				ctyDatRecord: ad1c.YemenCtyDat4test,
 			},
-			wantCtyDatList: []cty.Dta{
+			wantCtyDatList: []cty.Dat{
 				{
 					CountryName:   "Yemen",
 					PrimaryPrefix: "7O",
@@ -454,7 +454,7 @@ func Test_parseCtyDatRecordPeter1Island(t *testing.T) {
 	tests := []struct {
 		name           string
 		args           args
-		wantCtyDatList []cty.Dta
+		wantCtyDatList []cty.Dat
 		wantErr        bool
 	}{
 		{
@@ -462,7 +462,7 @@ func Test_parseCtyDatRecordPeter1Island(t *testing.T) {
 			args: args{
 				ctyDatRecord: ad1c.Peter1IslandCtyDat4test,
 			},
-			wantCtyDatList: []cty.Dta{
+			wantCtyDatList: []cty.Dat{
 				{
 					CountryName:   "Peter 1 Island",
 					PrimaryPrefix: "3Y/p",
@@ -514,7 +514,7 @@ func Test_parseCtyDatRecordBouvet(t *testing.T) {
 	tests := []struct {
 		name           string
 		args           args
-		wantCtyDatList []cty.Dta
+		wantCtyDatList []cty.Dat
 		wantErr        bool
 	}{
 		{
@@ -522,7 +522,7 @@ func Test_parseCtyDatRecordBouvet(t *testing.T) {
 			args: args{
 				ctyDatRecord: ad1c.BouvetCtyDat4test,
 			},
-			wantCtyDatList: []cty.Dta{
+			wantCtyDatList: []cty.Dat{
 				{
 					CountryName:   "Bouvet",
 					PrimaryPrefix: "3Y/b",
@@ -600,7 +600,7 @@ func Test_parseCtyDatRecordSloveniaCtyWtDat(t *testing.T) {
 	tests := []struct {
 		name           string
 		args           args
-		wantCtyDatList []cty.Dta
+		wantCtyDatList []cty.Dat
 		wantErr        bool
 	}{
 		{
@@ -608,7 +608,7 @@ func Test_parseCtyDatRecordSloveniaCtyWtDat(t *testing.T) {
 			args: args{
 				ctyDatRecord: ad1c.SloveniaWtModDat4test,
 			},
-			wantCtyDatList: []cty.Dta{
+			wantCtyDatList: []cty.Dat{
 				{
 					CountryName:   "Slovenia",
 					PrimaryPrefix: "S5",
@@ -647,7 +647,7 @@ func Test_parseCtyDatRecordSwedenCtyWtDat(t *testing.T) {
 	tests := []struct {
 		name           string
 		args           args
-		wantCtyDatList []cty.Dta
+		wantCtyDatList []cty.Dat
 		wantErr        bool
 	}{
 		{
@@ -655,7 +655,7 @@ func Test_parseCtyDatRecordSwedenCtyWtDat(t *testing.T) {
 			args: args{
 				ctyDatRecord: ad1c.SwedenWtModDat4test,
 			},
-			wantCtyDatList: []cty.Dta{
+			wantCtyDatList: []cty.Dat{
 				{
 					CountryName:   "Sweden",
 					PrimaryPrefix: "SM",
@@ -721,7 +721,7 @@ func Test_parseCtyDatRecordUnitedStatesCtyWtDat(t *testing.T) {
 	tests := []struct {
 		name           string
 		args           args
-		wantCtyDatList []cty.Dta
+		wantCtyDatList []cty.Dat
 		wantErr        bool
 	}{
 		{
@@ -729,7 +729,7 @@ func Test_parseCtyDatRecordUnitedStatesCtyWtDat(t *testing.T) {
 			args: args{
 				ctyDatRecord: ad1c.UnitedStatesWtModDat4test,
 			},
-			wantCtyDatList: []cty.Dta{
+			wantCtyDatList: []cty.Dat{
 				{
 					CountryName:   "United States",
 					PrimaryPrefix: "K",

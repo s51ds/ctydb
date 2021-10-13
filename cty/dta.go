@@ -2,7 +2,8 @@ package cty
 
 import "fmt"
 
-type Dta struct {
+// Dat represent country data as define in https://www.country-files.com/cty-dat-format/
+type Dat struct {
 	CountryName   string //Country Name
 	PrimaryPrefix string
 	AliasPrefix   string        //Primary or Alias DXCC Prefix without optional * indicator

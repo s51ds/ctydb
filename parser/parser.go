@@ -8,13 +8,13 @@ import (
 
 // ParseCtyDatRecords parses ctyDatRecords and returns map, key is Primary or Alias DXCC Prefix.
 // Function panics if ctyDatRecords is wrong formatted.
-func ParseCtyDatRecords(ctyDatRecords string) (m map[string]cty.Dta, err error) {
-	m = make(map[string]cty.Dta)
+func ParseCtyDatRecords(ctyDatRecords string) (m map[string]cty.Dat, err error) {
+	m = make(map[string]cty.Dat)
 	ctyDatRecords = removeComments(ctyDatRecords)
 	records := strings.Split(ctyDatRecords, ";")
 
 	numberOfRecords := len(records)
-	ch := make(chan []cty.Dta, numberOfRecords)
+	ch := make(chan []cty.Dat, numberOfRecords)
 
 	for _, rec := range records {
 		if len(rec) > 10 {
@@ -28,7 +28,7 @@ func ParseCtyDatRecords(ctyDatRecords string) (m map[string]cty.Dta, err error) 
 				ch <- v
 			}(rec)
 		} else {
-			ch <- []cty.Dta{}
+			ch <- []cty.Dat{}
 		}
 	}
 

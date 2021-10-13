@@ -9,7 +9,7 @@ import (
 
 // parseCtyDatRecord parse cty dat record, record format is defined at
 // https://www.country-files.com/cty-dat-format/
-func parseCtyDatRecord(ctyDatRecord string) (ctyDatList []cty.Dta, err error) {
+func parseCtyDatRecord(ctyDatRecord string) (ctyDatList []cty.Dat, err error) {
 	if len(ctyDatRecord) < 76 {
 		return nil, errorWrongFormattedRecord("", ctyDatRecord)
 	}
@@ -18,8 +18,8 @@ func parseCtyDatRecord(ctyDatRecord string) (ctyDatList []cty.Dta, err error) {
 	primaryRecord := ctyDatRecord[:76]
 	aliasRecords := strings.Split(ctyDatRecord[76:], ",")
 
-	ctyDatList = make([]cty.Dta, len(aliasRecords))
-	primaryDta := cty.Dta{}
+	ctyDatList = make([]cty.Dat, len(aliasRecords))
+	primaryDta := cty.Dat{}
 
 	//
 	// Example of ctyDatRecord
@@ -34,7 +34,7 @@ func parseCtyDatRecord(ctyDatRecord string) (ctyDatList []cty.Dta, err error) {
 	// Eight field delimiters are expected. Let's count them
 	fields := strings.Split(primaryRecord, ":")
 	if len(fields) != 9 {
-		return []cty.Dta{}, errorWrongFormattedRecord("Unexpected number of fields: "+strconv.Itoa(len(fields)), ctyDatRecord)
+		return []cty.Dat{}, errorWrongFormattedRecord("Unexpected number of fields: "+strconv.Itoa(len(fields)), ctyDatRecord)
 	}
 
 	//COLUMN	LENGTH	DESCRIPTION
@@ -45,7 +45,7 @@ func parseCtyDatRecord(ctyDatRecord string) (ctyDatList []cty.Dta, err error) {
 	//27	5	CQ Zone
 	if cq, err := strconv.Atoi(strings.TrimSpace(fields[1])); err != nil {
 		//TODO: test
-		return []cty.Dta{}, errorWrongFormattedRecord("Wrong formatted CQ Zone: "+fields[1], ctyDatRecord)
+		return []cty.Dat{}, errorWrongFormattedRecord("Wrong formatted CQ Zone: "+fields[1], ctyDatRecord)
 	} else {
 		primaryDta.CqZone = cty.CqzoneEnum(cq)
 	}
@@ -53,7 +53,7 @@ func parseCtyDatRecord(ctyDatRecord string) (ctyDatList []cty.Dta, err error) {
 	//32	5	ITU Zone
 	if itu, err := strconv.Atoi(strings.TrimSpace(fields[2])); err != nil {
 		//TODO: test
-		return []cty.Dta{}, errorWrongFormattedRecord("Wrong formatted ITU Zone: "+fields[2], ctyDatRecord)
+		return []cty.Dat{}, errorWrongFormattedRecord("Wrong formatted ITU Zone: "+fields[2], ctyDatRecord)
 	} else {
 		primaryDta.ItuZone = cty.ItuzoneEnum(itu)
 	}
@@ -61,7 +61,7 @@ func parseCtyDatRecord(ctyDatRecord string) (ctyDatList []cty.Dta, err error) {
 	//37	5	2-letter continent abbreviation
 	if c, err := cty.Continent(strings.TrimSpace(fields[3])); err != nil {
 		//TODO: test
-		return []cty.Dta{}, errorWrongFormattedRecord(err.Error(), ctyDatRecord)
+		return []cty.Dat{}, errorWrongFormattedRecord(err.Error(), ctyDatRecord)
 	} else {
 		primaryDta.Continent = c
 	}
@@ -71,12 +71,12 @@ func parseCtyDatRecord(ctyDatRecord string) (ctyDatList []cty.Dta, err error) {
 	lat, err := strconv.ParseFloat(strings.TrimSpace(fields[4]), 64)
 	if err != nil {
 		//TODO: test
-		return []cty.Dta{}, errorWrongFormattedRecord("Wrong formatted latitude: "+fields[4], ctyDatRecord)
+		return []cty.Dat{}, errorWrongFormattedRecord("Wrong formatted latitude: "+fields[4], ctyDatRecord)
 	}
 	lon, err := strconv.ParseFloat(strings.TrimSpace(fields[5]), 64)
 	if err != nil {
 		//TODO: test
-		return []cty.Dta{}, errorWrongFormattedRecord("Wrong formatted longitude: "+fields[5], ctyDatRecord)
+		return []cty.Dat{}, errorWrongFormattedRecord("Wrong formatted longitude: "+fields[5], ctyDatRecord)
 	}
 	primaryDta.LatLon.Lat = lat
 	primaryDta.LatLon.Lon = -lon // + is for East not for West as it is defined in CTY.DAT format document
@@ -112,13 +112,13 @@ func parseCtyDatRecord(ctyDatRecord string) (ctyDatList []cty.Dta, err error) {
 				if cqZone != "" {
 					if i, e := strconv.Atoi(cqZone); e != nil {
 						//TODO: test
-						return []cty.Dta{}, errorWrongFormattedRecord("wrong formatted override CQ Zone: "+cqZone+" "+e.Error(), ctyDatRecord)
+						return []cty.Dat{}, errorWrongFormattedRecord("wrong formatted override CQ Zone: "+cqZone+" "+e.Error(), ctyDatRecord)
 					} else {
 						aliasDta.CqZone = cty.CqzoneEnum(i)
 					}
 				} else {
 					//TODO: test
-					return []cty.Dta{}, errorWrongFormattedRecord("wrong formatted override CQ Zone: "+cqZone, ctyDatRecord)
+					return []cty.Dat{}, errorWrongFormattedRecord("wrong formatted override CQ Zone: "+cqZone, ctyDatRecord)
 				}
 			}
 			//
@@ -129,13 +129,13 @@ func parseCtyDatRecord(ctyDatRecord string) (ctyDatList []cty.Dta, err error) {
 				if ituZone != "" {
 					if i, e := strconv.Atoi(ituZone); e != nil {
 						//TODO: test
-						return []cty.Dta{}, errorWrongFormattedRecord("wrong formatted override ITU Zone: "+ituZone+" "+e.Error(), ctyDatRecord)
+						return []cty.Dat{}, errorWrongFormattedRecord("wrong formatted override ITU Zone: "+ituZone+" "+e.Error(), ctyDatRecord)
 					} else {
 						aliasDta.ItuZone = cty.ItuzoneEnum(i)
 					}
 				} else {
 					//TODO: test
-					return []cty.Dta{}, errorWrongFormattedRecord("wrong formatted override ITU Zone: "+ituZone, ctyDatRecord)
+					return []cty.Dat{}, errorWrongFormattedRecord("wrong formatted override ITU Zone: "+ituZone, ctyDatRecord)
 				}
 			}
 			//
@@ -148,7 +148,7 @@ func parseCtyDatRecord(ctyDatRecord string) (ctyDatList []cty.Dta, err error) {
 				lat, errLat := strconv.ParseFloat(latS, 64)
 				lon, errLon := strconv.ParseFloat(lonS, 64)
 				if errLat != nil || errLon != nil {
-					return []cty.Dta{}, errorWrongFormattedRecord("wrong formatted override Latitude/Longitude: "+overrideLatLon, ctyDatRecord)
+					return []cty.Dat{}, errorWrongFormattedRecord("wrong formatted override Latitude/Longitude: "+overrideLatLon, ctyDatRecord)
 				} else {
 					aliasDta.LatLon.Lat = lat
 					aliasDta.LatLon.Lon = -lon
