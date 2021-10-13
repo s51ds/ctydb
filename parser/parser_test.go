@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"github.com.s51ds/ctydb/ad1c"
 	"github.com.s51ds/ctydb/cty"
 	"reflect"
 	"testing"
@@ -60,7 +61,7 @@ func Test_parseCtyDatRecordSlovenia(t *testing.T) {
 		{
 			name: "SloveniaCtyDat",
 			args: args{
-				ctyDatRecord: SloveniaCtyDat,
+				ctyDatRecord: ad1c.SloveniaCtyDat,
 			},
 			wantDtaRecords: []cty.Dta{
 				{
@@ -172,7 +173,7 @@ func Test_parseCtyDatRecordSweden(t *testing.T) {
 		{
 			name: "SwedenCtyDat",
 			args: args{
-				ctyDatRecord: SwedenCtyDat,
+				ctyDatRecord: ad1c.SwedenCtyDat,
 			},
 			wantCtyDatList: []cty.Dta{
 				{
@@ -300,7 +301,7 @@ func Test_parseCtyDatRecordAfricanItaly(t *testing.T) {
 		{
 			name: "AfricanItalyCtyDat",
 			args: args{
-				ctyDatRecord: AfricanItalyCtyDat,
+				ctyDatRecord: ad1c.AfricanItalyCtyDat,
 			},
 			wantCtyDatList: []cty.Dta{
 				{
@@ -386,7 +387,7 @@ func Test_parseCtyDatRecordYemen(t *testing.T) {
 		{
 			name: "YemenCtyDat",
 			args: args{
-				ctyDatRecord: YemenCtyDat,
+				ctyDatRecord: ad1c.YemenCtyDat,
 			},
 			wantCtyDatList: []cty.Dta{
 				{
@@ -459,7 +460,7 @@ func Test_parseCtyDatRecordPeter1Island(t *testing.T) {
 		{
 			name: "Peter 1 Island",
 			args: args{
-				ctyDatRecord: Peter1IslandCtyDat,
+				ctyDatRecord: ad1c.Peter1IslandCtyDat,
 			},
 			wantCtyDatList: []cty.Dta{
 				{
@@ -519,7 +520,7 @@ func Test_parseCtyDatRecordBouvet(t *testing.T) {
 		{
 			name: "BouvetCtyDat",
 			args: args{
-				ctyDatRecord: BouvetCtyDat,
+				ctyDatRecord: ad1c.BouvetCtyDat,
 			},
 			wantCtyDatList: []cty.Dta{
 				{
@@ -605,7 +606,7 @@ func Test_parseCtyDatRecordSloveniaCtyWtDat(t *testing.T) {
 		{
 			name: "Slovenia Cty Wt Mod",
 			args: args{
-				ctyDatRecord: SloveniaWtModDat,
+				ctyDatRecord: ad1c.SloveniaWtModDat,
 			},
 			wantCtyDatList: []cty.Dta{
 				{
@@ -652,7 +653,7 @@ func Test_parseCtyDatRecordSwedenCtyWtDat(t *testing.T) {
 		{
 			name: "Sweden Cty Wt Mod",
 			args: args{
-				ctyDatRecord: SwedenWtModDat,
+				ctyDatRecord: ad1c.SwedenWtModDat,
 			},
 			wantCtyDatList: []cty.Dta{
 				{
@@ -726,7 +727,7 @@ func Test_parseCtyDatRecordUnitedStatesCtyWtDat(t *testing.T) {
 		{
 			name: "USA Cty Wt Mod",
 			args: args{
-				ctyDatRecord: UnitedStatesWtModDat,
+				ctyDatRecord: ad1c.UnitedStatesWtModDat,
 			},
 			wantCtyDatList: []cty.Dta{
 				{
@@ -814,9 +815,9 @@ func Test_removeComments(t *testing.T) {
 		{
 			name: "comments-1",
 			args: args{
-				ctyDatRecords: TestInput1,
+				ctyDatRecords: ad1c.TestInput1,
 			},
-			want: TestOutput1,
+			want: ad1c.TestOutput1,
 		},
 	}
 	for _, tt := range tests {
@@ -841,7 +842,7 @@ func Test_parseCtyDatRecordsGo(t *testing.T) {
 		{
 			name: "CtyDatRecords",
 			args: args{
-				ctyDatRecords: CtyDatRecords,
+				ctyDatRecords: ad1c.CtyDatRecords,
 			},
 			wantMsize: 21314,
 			wantErr:   false,
@@ -849,7 +850,7 @@ func Test_parseCtyDatRecordsGo(t *testing.T) {
 		{
 			name: "CtyWtModDatRecords",
 			args: args{
-				ctyDatRecords: CtyWtModDatRecords,
+				ctyDatRecords: ad1c.CtyWtModDatRecords,
 			},
 			wantMsize: 26991,
 			wantErr:   false,

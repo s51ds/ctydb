@@ -1,4 +1,4 @@
-package parser
+package ad1c
 
 const (
 	SloveniaCtyDat string = `Slovenia:                 15:  28:  EU:   46.00:   -14.00:    -1.0:  S5:

@@ -1,1 +1,3 @@
 # ctydb
+
+AD1C's country file is used to callsign lookup for country, continent, zone, ...
