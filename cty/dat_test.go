@@ -46,11 +46,11 @@ func TestDat_String(t *testing.T) {
 				ItuZone:       "28",
 				LatLon: LatLonDeg{
 					Lat: 46.00,
-					Lon: -14.00,
+					Lon: 14.00,
 				},
 				TimeOffset: "-1.0",
 			},
-			want: `{"CountryName":"Slovenia","PrimaryPrefix":"S5","AliasPrefix":"","Continent":"EU","CqZone":"15","ItuZone":"28","LatLon":{"Lat":46,"Lon":-14},"TimeOffset":"-1.0"}`,
+			want: `{"CountryName":"Slovenia","PrimaryPrefix":"S5","AliasPrefix":"","Continent":"EU","CqZone":"15","ItuZone":"28","LatLon":{"Lat":46,"Lon":14},"TimeOffset":"-1.0"}`,
 		},
 	}
 	for _, tt := range tests {

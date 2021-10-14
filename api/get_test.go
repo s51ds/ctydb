@@ -17,22 +17,26 @@ func TestGet(t *testing.T) {
 		wantErr         bool
 	}{
 		{
-			name: "err-1",
+			name: "s59abc",
 			args: args{"S59ABC"},
 			wantCountryData: cty.Dat{
-				CountryName:   "",
-				PrimaryPrefix: "",
-				AliasPrefix:   "",
-				Continent:     "",
-				CqZone:        "",
-				ItuZone:       "",
-				LatLon:        cty.LatLonDeg{},
-				TimeOffset:    "",
+				CountryName:   "Slovenia",
+				PrimaryPrefix: "S5",
+				AliasPrefix:   "S5",
+				Continent:     "EU",
+				CqZone:        "15",
+				ItuZone:       "28",
+				LatLon: cty.LatLonDeg{
+					Lat: 46,
+					Lon: 14,
+				},
+				TimeOffset: "-1.0",
 			},
-			wantErr: true,
+			wantErr: false,
 		},
 	}
 	for _, tt := range tests {
+		Load()
 		t.Run(tt.name, func(t *testing.T) {
 			gotCountryData, err := Get(tt.args.callSign)
 			if (err != nil) != tt.wantErr {
