@@ -1,13 +1,14 @@
-package cty
+package api
 
 import (
 	"errors"
 	"fmt"
+	"github.com.s51ds/ctydb/cty"
 )
 
-var records map[string]Dat
+var records map[string]cty.Dat
 
-func Get(callSign string) (countryData Dat, err error) {
+func Get(callSign string) (countryData cty.Dat, err error) {
 	if v, has := records[callSign]; has {
 		return v, nil
 	} else {

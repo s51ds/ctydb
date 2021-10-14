@@ -1,6 +1,7 @@
-package cty
+package api
 
 import (
+	"github.com.s51ds/ctydb/cty"
 	"reflect"
 	"testing"
 )
@@ -12,20 +13,20 @@ func TestGet(t *testing.T) {
 	tests := []struct {
 		name            string
 		args            args
-		wantCountryData Dat
+		wantCountryData cty.Dat
 		wantErr         bool
 	}{
 		{
 			name: "err-1",
 			args: args{"S59ABC"},
-			wantCountryData: Dat{
+			wantCountryData: cty.Dat{
 				CountryName:   "",
 				PrimaryPrefix: "",
 				AliasPrefix:   "",
 				Continent:     "",
 				CqZone:        "",
 				ItuZone:       "",
-				LatLon:        LatLonDeg{},
+				LatLon:        cty.LatLonDeg{},
 				TimeOffset:    "",
 			},
 			wantErr: true,
