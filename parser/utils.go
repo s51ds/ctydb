@@ -2,6 +2,7 @@ package parser
 
 import (
 	"bytes"
+	"fmt"
 	"github.com.s51ds/ctydb/cty"
 	"strconv"
 	"strings"
@@ -43,28 +44,14 @@ func parseCtyDatRecord(ctyDatRecord string) (ctyDatList []cty.Dat, err error) {
 	primaryDta.CountryName = strings.TrimSpace(fields[0])
 	//
 	//27	5	CQ Zone
-	if cq, err := strconv.Atoi(strings.TrimSpace(fields[1])); err != nil {
-		//TODO: test
-		return []cty.Dat{}, errorWrongFormattedRecord("Wrong formatted CQ Zone: "+fields[1], ctyDatRecord)
-	} else {
-		primaryDta.CqZone = cty.CqzoneEnum(cq)
-	}
+	primaryDta.CqZone = strings.TrimSpace(fields[1])
+
 	//
 	//32	5	ITU Zone
-	if itu, err := strconv.Atoi(strings.TrimSpace(fields[2])); err != nil {
-		//TODO: test
-		return []cty.Dat{}, errorWrongFormattedRecord("Wrong formatted ITU Zone: "+fields[2], ctyDatRecord)
-	} else {
-		primaryDta.ItuZone = cty.ItuzoneEnum(itu)
-	}
+	primaryDta.ItuZone = strings.TrimSpace(fields[2])
 	//
 	//37	5	2-letter continent abbreviation
-	if c, err := cty.Continent(strings.TrimSpace(fields[3])); err != nil {
-		//TODO: test
-		return []cty.Dat{}, errorWrongFormattedRecord(err.Error(), ctyDatRecord)
-	} else {
-		primaryDta.Continent = c
-	}
+	primaryDta.Continent = strings.TrimSpace(fields[3])
 	//
 	//42	9	Latitude in degrees, + for North
 	//51	10	Longitude in degrees, + for West
@@ -94,6 +81,9 @@ func parseCtyDatRecord(ctyDatRecord string) (ctyDatList []cty.Dat, err error) {
 	primaryDta.PrimaryPrefix = primaryPfx
 	primaryDta.AliasPrefix = primaryPfx
 	//
+	if err = primaryDta.Valid(); err != nil {
+		return
+	}
 	ctyDatList[0] = primaryDta
 	//
 	//
@@ -110,12 +100,7 @@ func parseCtyDatRecord(ctyDatRecord string) (ctyDatList []cty.Dat, err error) {
 			if overrideCqZone != "" {
 				cqZone := regexZone.FindString(overrideCqZone)
 				if cqZone != "" {
-					if i, e := strconv.Atoi(cqZone); e != nil {
-						//TODO: test
-						return []cty.Dat{}, errorWrongFormattedRecord("wrong formatted override CQ Zone: "+cqZone+" "+e.Error(), ctyDatRecord)
-					} else {
-						aliasDta.CqZone = cty.CqzoneEnum(i)
-					}
+					aliasDta.CqZone = fmt.Sprintf("%02s", cqZone)
 				} else {
 					//TODO: test
 					return []cty.Dat{}, errorWrongFormattedRecord("wrong formatted override CQ Zone: "+cqZone, ctyDatRecord)
@@ -127,12 +112,7 @@ func parseCtyDatRecord(ctyDatRecord string) (ctyDatList []cty.Dat, err error) {
 			if overrideItuZone != "" {
 				ituZone := regexZone.FindString(overrideItuZone)
 				if ituZone != "" {
-					if i, e := strconv.Atoi(ituZone); e != nil {
-						//TODO: test
-						return []cty.Dat{}, errorWrongFormattedRecord("wrong formatted override ITU Zone: "+ituZone+" "+e.Error(), ctyDatRecord)
-					} else {
-						aliasDta.ItuZone = cty.ItuzoneEnum(i)
-					}
+					aliasDta.ItuZone = fmt.Sprintf("%02s", ituZone)
 				} else {
 					//TODO: test
 					return []cty.Dat{}, errorWrongFormattedRecord("wrong formatted override ITU Zone: "+ituZone, ctyDatRecord)
@@ -161,6 +141,10 @@ func parseCtyDatRecord(ctyDatRecord string) (ctyDatList []cty.Dat, err error) {
 				aliasDta.TimeOffset = strings.Trim(overrideTimeOffset, "~")
 			}
 
+			if err = aliasDta.Valid(); err != nil {
+				return
+			}
+
 			if idx >= cap(ctyDatList) {
 				ctyDatList = append(ctyDatList, aliasDta)
 			} else {
@@ -170,7 +154,6 @@ func parseCtyDatRecord(ctyDatRecord string) (ctyDatList []cty.Dat, err error) {
 		}
 
 	}
-
 	return ctyDatList, nil
 }
 

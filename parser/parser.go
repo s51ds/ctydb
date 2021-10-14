@@ -7,7 +7,7 @@ import (
 )
 
 // ParseCtyDatRecords parses ctyDatRecords and returns map, key is Primary or Alias DXCC Prefix.
-// Function panics if ctyDatRecords is wrong formatted.
+// ParseCtyDatRecords panics if ctyDatRecords is wrong formatted.
 func ParseCtyDatRecords(ctyDatRecords string) (m map[string]cty.Dat, err error) {
 	m = make(map[string]cty.Dat)
 	ctyDatRecords = removeComments(ctyDatRecords)
