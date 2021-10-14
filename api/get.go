@@ -9,7 +9,6 @@ import (
 var records map[string]cty.Dat
 
 func Get(callSign string) (countryData cty.Dat, err error) {
-	fmt.Println(records["S5"])
 	for i := len(callSign); i >= 0; i-- {
 		s := callSign[:i]
 		if v, has := records[s]; has {
