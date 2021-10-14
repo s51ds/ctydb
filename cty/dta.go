@@ -4,14 +4,18 @@ import "fmt"
 
 // Dat represent country data as define in https://www.country-files.com/cty-dat-format/
 type Dat struct {
-	CountryName   string //Country Name
+	CountryName   string
 	PrimaryPrefix string
-	AliasPrefix   string        //Primary or Alias DXCC Prefix without optional * indicator
-	Continent     ContinentEnum //2-letter Continent abbreviation
-	CqZone        CqzoneEnum    //CQ Zone
-	ItuZone       ItuzoneEnum   //ITU Zone
-	LatLon        LatLonDeg     //Latitude in degrees, + for North; Longitude in degrees, + for West
-	TimeOffset    string        //Local time offset from GMT
+	AliasPrefix   string    //Primary or Alias DXCC Prefix without optional * indicator
+	Continent     string    //2-letter Continent abbreviation
+	CqZone        string    //2-number CQ Zone
+	ItuZone       string    //2-number ITU Zone
+	LatLon        LatLonDeg //Latitude in degrees, + for North; Longitude in degrees, + for West
+	TimeOffset    string    //Local time offset from GMT
+}
+
+func (d Dat) Valid() (yes bool, err error) {
+	return
 }
 
 type LatLonDeg struct {
