@@ -1,6 +1,9 @@
 package cty
 
-import "fmt"
+import (
+	"encoding/json"
+	"fmt"
+)
 
 // Dat represent country data as define in https://www.country-files.com/cty-dat-format/
 type Dat struct {
@@ -14,8 +17,14 @@ type Dat struct {
 	TimeOffset    string    //Local time offset from GMT
 }
 
-func (d Dat) Valid() (yes bool, err error) {
-	return
+func (d Dat) String() string {
+
+	if bb, err := json.Marshal(d); err != nil {
+		return err.Error()
+	} else {
+		return string(bb)
+	}
+
 }
 
 type LatLonDeg struct {
