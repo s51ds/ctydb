@@ -19,7 +19,7 @@ func TestGet(t *testing.T) {
 			name: "err-1",
 			args: args{"S59ABC"},
 			wantCountryData: Dat{
-				CountryName:   "Slovenia",
+				CountryName:   "",
 				PrimaryPrefix: "",
 				AliasPrefix:   "",
 				Continent:     0,
@@ -28,7 +28,7 @@ func TestGet(t *testing.T) {
 				LatLon:        LatLonDeg{},
 				TimeOffset:    "",
 			},
-			wantErr: false,
+			wantErr: true,
 		},
 	}
 	for _, tt := range tests {
