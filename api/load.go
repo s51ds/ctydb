@@ -1,16 +1,20 @@
 package api
 
 import (
+	"fmt"
 	"github.com.s51ds/ctydb/ad1c"
+	"github.com.s51ds/ctydb/cty"
 	"github.com.s51ds/ctydb/parser"
 )
 
-func Load() {
+var ctyDatRecords map[string]cty.Dat
 
-	if r, err := parser.ParseCtyDatRecords(ad1c.CtyDatFile4test); err != nil {
+func Load() {
+	var err error
+	fmt.Println("Loading Cty File...")
+	if ctyDatRecords, err = parser.ParseCtyDatRecords(ad1c.CtyDatFile4test); err != nil {
 		panic(err)
 	} else {
-		records = r
+		fmt.Println("Cty File loaded, number of ctyDatRecords:", len(ctyDatRecords))
 	}
-
 }

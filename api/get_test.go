@@ -2,6 +2,7 @@ package api
 
 import (
 	"github.com.s51ds/ctydb/cty"
+	"os"
 	"reflect"
 	"testing"
 )
@@ -183,7 +184,7 @@ func TestGet(t *testing.T) {
 		},
 	}
 	for _, tt := range tests {
-		Load()
+
 		t.Run(tt.name, func(t *testing.T) {
 			gotCountryData, err := Get(tt.args.callSign)
 			if (err != nil) != tt.wantErr {
@@ -195,4 +196,9 @@ func TestGet(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestMain(m *testing.M) {
+	Load()
+	os.Exit(m.Run())
 }

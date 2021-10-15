@@ -5,13 +5,27 @@ import (
 	"fmt"
 	"github.com.s51ds/ctydb/cty"
 	"strings"
+	"sync"
 )
 
-var records map[string]cty.Dat
+var (
+	cache = make(map[string]cty.Dat) // Key is callSign
+	mutex = &sync.RWMutex{}
+)
 
 func Get(callSign string) (countryData cty.Dat, err error) {
 	callSign = strings.TrimSpace(callSign)
 	callSign = strings.ToUpper(callSign)
+
+	// check cache
+	has := false
+	mutex.RLock()
+	countryData, has = cache[callSign]
+	mutex.RUnlock()
+	if has {
+		return
+	}
+	origCallSign := callSign
 
 	if strings.Contains(callSign, "/") {
 		// handle /P /MM etc
@@ -34,9 +48,17 @@ func Get(callSign string) (countryData cty.Dat, err error) {
 
 	for i := len(callSign); i >= 0; i-- {
 		s := callSign[:i]
-		if v, has := records[s]; has {
-			return v, nil
+		if countryData, has = ctyDatRecords[s]; has {
+			mutex.Lock()
+			cache[origCallSign] = countryData
+			mutex.Unlock()
+			return
 		}
 	}
+
+	countryData.CountryName = "Unknown"
+	mutex.Lock()
+	cache[origCallSign] = countryData
+	mutex.Unlock()
 	return countryData, errors.New(fmt.Sprintf("no country data for call sign:%s", callSign))
 }
