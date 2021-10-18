@@ -25,6 +25,15 @@ func Get(callSign string) (countryData cty.Dat, err error) {
 	if has {
 		return
 	}
+	// not in cache, check if complete callSign is in DB
+	if countryData, has = ctyDatRecords[callSign]; has {
+		mutex.Lock()
+		cache[callSign] = countryData
+		mutex.Unlock()
+		return
+	}
+
+	// following algorithm try to find cty.Dat...
 	origCallSign := callSign
 
 	if strings.Contains(callSign, "/") {

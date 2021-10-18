@@ -182,6 +182,24 @@ func TestGet(t *testing.T) {
 			},
 			wantErr: false,
 		},
+		{
+			name: "9M6/OH2YY",
+			args: args{"9M6/OH2YY"},
+			wantCountryData: cty.Dat{
+				CountryName:   "Spratly Islands",
+				PrimaryPrefix: "1S",
+				AliasPrefix:   "9M6/OH2YY",
+				Continent:     "AS",
+				CqZone:        "26",
+				ItuZone:       "50",
+				LatLon: cty.LatLonDeg{
+					Lat: 9.88,
+					Lon: 114.23,
+				},
+				TimeOffset: "-8.0",
+			},
+			wantErr: false,
+		},
 	}
 	for _, tt := range tests {
 
