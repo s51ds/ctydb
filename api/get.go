@@ -3,7 +3,7 @@ package api
 import (
 	"errors"
 	"fmt"
-	"github.com.s51ds/ctydb/cty"
+	"github.com/s51ds/ctydb/cty"
 	"strings"
 	"sync"
 )

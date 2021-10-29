@@ -2,7 +2,7 @@ package parser
 
 import (
 	"fmt"
-	"github.com.s51ds/ctydb/cty"
+	"github.com/s51ds/ctydb/cty"
 	"strings"
 )
 

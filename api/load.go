@@ -2,9 +2,9 @@ package api
 
 import (
 	"fmt"
-	"github.com.s51ds/ctydb/ad1c"
-	"github.com.s51ds/ctydb/cty"
-	"github.com.s51ds/ctydb/parser"
+	"github.com/s51ds/ctydb/ad1c"
+	"github.com/s51ds/ctydb/cty"
+	"github.com/s51ds/ctydb/parser"
 )
 
 var ctyDatRecords map[string]cty.Dat

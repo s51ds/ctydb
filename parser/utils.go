@@ -3,7 +3,7 @@ package parser
 import (
 	"bytes"
 	"fmt"
-	"github.com.s51ds/ctydb/cty"
+	"github.com/s51ds/ctydb/cty"
 	"strconv"
 	"strings"
 )

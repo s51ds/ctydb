@@ -1,7 +1,7 @@
 package api
 
 import (
-	"github.com.s51ds/ctydb/cty"
+	"github.com/s51ds/ctydb/cty"
 	"os"
 	"reflect"
 	"testing"
