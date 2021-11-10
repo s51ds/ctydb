@@ -147,6 +147,25 @@ func TestGet(t *testing.T) {
 		},
 
 		{
+			name: "OE1ILW/3",
+			args: args{"OE1ILW/3"},
+			wantCountryData: cty.Dat{
+				CountryName:   "Austria",
+				PrimaryPrefix: "OE",
+				AliasPrefix:   "OE",
+				Continent:     "EU",
+				CqZone:        "15",
+				ItuZone:       "28",
+				LatLon: cty.LatLonDeg{
+					Lat: 47.33,
+					Lon: 13.33,
+				},
+				TimeOffset: "-1.0",
+			},
+			wantErr: false,
+		},
+
+		{
 			name: "AC2AI/KH2",
 			args: args{"AC2AI/KH2"},
 			wantCountryData: cty.Dat{

@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/s51ds/ctydb/cty"
+	"strconv"
 	"strings"
 	"sync"
 )
@@ -50,7 +51,9 @@ func Get(callSign string) (countryData cty.Dat, err error) {
 		if strings.Contains(callSign, "/") {
 			ss := strings.Split(callSign, "/")
 			if len(ss) == 2 && len(ss[0]) > len(ss[1]) {
-				callSign = ss[1] + "/" + ss[0]
+				if _, err := strconv.Atoi(ss[1]); err != nil { // check it that is number e.g. I5MZY/4
+					callSign = ss[1] + "/" + ss[0]
+				}
 			}
 		}
 	}
